@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using LABORATORIO_0_.Models;
+using Lab0.Models;
 
-namespace LABORATORIO_0_.Controllers
+namespace Lab0.Controllers
 {
     public class HomeController : Controller
     {
@@ -27,8 +27,6 @@ namespace LABORATORIO_0_.Controllers
         {
             return View();
         }
-
-        [HttpGet]
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
