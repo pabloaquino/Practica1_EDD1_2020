@@ -1,0 +1,31 @@
+﻿@model Lab0.Models.Cliente
+
+@{
+    ViewData["Title"] = "CrearClientes";
+}
+
+<h1>CrearClientes</h1>
+
+<h4>Cliente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CrearClientes" method="post">
+            <div class="form-group">
+                <label>Nombre: <input type="text" name="nombre" value="" /></label><br />
+                <label>Apellido: <input type="text" name="apellido" value="" /></label><br />
+                <label>Telefono: <input type="number" name="telefono" value="" /></label><br />
+                <label>Descripcion: <input type="text" name="descripion" value="" /></label><br />
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

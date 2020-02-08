@@ -12,10 +12,11 @@ namespace Lab0.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        public static List<Cliente> listaClientes = new List<Cliente>();
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index()
@@ -23,6 +24,43 @@ namespace Lab0.Controllers
             return View();
         }
 
+        public ActionResult CrearClientes()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CrearClientes(string nombre, string apellido, int telefono, string descripion)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.nombre = nombre;
+                    cliente.apellido = apellido;
+                    cliente.telefono = telefono;
+                    cliente.descripcion = descripion;
+                    //codigo aqui
+                    listaClientes.Add(cliente);
+                    return RedirectToAction("Mostrar");
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+        }
+        [HttpGet]
+        public IActionResult Mostrar()
+        {
+
+            return View(listaClientes);
+        }
         public IActionResult Privacy()
         {
             return View();
