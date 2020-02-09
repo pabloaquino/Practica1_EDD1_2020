@@ -42,6 +42,7 @@ namespace Lab0.Controllers
                     cliente.descripcion = descripion;
                     //codigo aqui
                     listaClientes.Add(cliente);
+                    
                     return RedirectToAction("Mostrar");
                 }
                 else
@@ -58,7 +59,23 @@ namespace Lab0.Controllers
         [HttpGet]
         public IActionResult Mostrar()
         {
-
+            void ordenarCliente()
+            {
+                Cliente aux;
+                for (int i = 0; i < listaClientes.Count; i++)
+                {
+                    for (int j = 0; j < listaClientes.Count - 1; j++)
+                    {
+                        if (listaClientes[j].nombre.CompareTo(listaClientes[j + 1].nombre) > 0)
+                        {
+                            aux = listaClientes[j];
+                            listaClientes[j] = listaClientes[j + 1];
+                            listaClientes[j + 1] = aux;
+                        }
+                    }
+                }
+            }
+            ordenarCliente();
             return View(listaClientes);
         }
         public IActionResult Privacy()
